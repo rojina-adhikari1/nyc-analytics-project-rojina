@@ -31,7 +31,7 @@ cleaned AS (
             sidewalk_dimensions_length,
             sidewalk_dimensions_width,
             sidewalk_dimensions_area,
-            roadway_dimemsions_length,
+            roadway_dimensions_length,
             roadway_dimensions_width,
             roadway_dimensions_area,
             approved_for_sidewalk_seating,
@@ -99,7 +99,7 @@ cleaned AS (
         CAST(sidewalk_dimensions_area AS FLOAT64) AS sidewalk_area_sqft,
 
         -- Roadway dimensions
-        CAST(roadway_dimemsions_length AS FLOAT64) AS roadway_length_ft,
+        CAST(roadway_dimensions_length AS FLOAT64) AS roadway_length_ft,
         CAST(roadway_dimensions_width AS FLOAT64) AS roadway_width_ft,
         CAST(roadway_dimensions_area AS FLOAT64) AS roadway_area_sqft,
 
