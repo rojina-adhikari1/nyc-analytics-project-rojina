@@ -63,7 +63,6 @@ cleaned AS (
         UPPER(TRIM(CAST(seating_interest_sidewalk AS STRING))) AS seating_interest,
 
         -- Location fields
-        CAST(building_number AS STRING) AS building_number,
         CAST(street AS STRING) AS street_name,
 
         CASE
