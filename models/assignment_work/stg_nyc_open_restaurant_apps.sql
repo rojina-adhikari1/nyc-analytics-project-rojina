@@ -19,6 +19,7 @@ cleaned AS (
             legal_business_name,
             doing_business_as_dba,
             seating_interest_sidewalk,
+            bulding_number,
             building_number,
             street,
             borough,
@@ -128,7 +129,15 @@ cleaned AS (
         CAST(time_of_submission AS TIMESTAMP) AS submitted_at,
 
         -- Metadata
-        CURRENT_TIMESTAMP() AS _stg_loaded_at
+        CURRENT_TIMESTAMP() AS _stg_loaded_at,
+
+        -- Bulding number
+        -- Building number (fix Socrata typo column)
+
+        CASE
+            WHEN LOWER(TRIM(bulding_number)) = 'undefined' THEN NULL
+            ELSE TRIM(CAST(bulding_number AS STRING))
+        END AS building_number
 
     FROM source
 
@@ -142,7 +151,6 @@ cleaned AS (
         PARTITION BY objectid
         ORDER BY time_of_submission DESC
     ) = 1
-
 )
 
 SELECT *
