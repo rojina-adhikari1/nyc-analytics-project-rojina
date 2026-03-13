@@ -3,7 +3,8 @@
 WITH all_locations AS (
    -- Get locations from 311 requests
    SELECT DISTINCT
-      borough 
+      borough,
+      incident_zip AS zip_code -- rename incident_zip to zip_code
    FROM {{ ref('stg_nyc_311_dot') }}
    WHERE borough IS NOT NULL
 
@@ -11,7 +12,8 @@ WITH all_locations AS (
 
    -- Get locations from restaurant applications
    SELECT DISTINCT
-       borough 
+       borough,
+       zip_code 
    FROM {{ ref('stg_nyc_open_restaurant_apps') }}
    WHERE borough IS NOT NULL
 ),
@@ -24,4 +26,4 @@ location_dimension AS (
    FROM all_locations
 )
 
-SELECT borough FROM location_dimension 
+SELECT * FROM location_dimension 
